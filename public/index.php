@@ -1,5 +1,11 @@
 <?php
 
+// Se agrego esto para no tener problemas al cargar el sitio
+
+ini_set('memory_limit', '5G');
+
+
+
 /**
  * Laravel - A PHP Framework For Web Artisans
  *
