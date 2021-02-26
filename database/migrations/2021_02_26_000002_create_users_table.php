@@ -17,8 +17,8 @@ class CreateUsersTable extends Migration
             $table->engine = 'InnoDB';
             $table->id();
             $table->foreignId('role_id')->constrained('roles');
-            $table->string('firstname', 100);
-            $table->string('lastname', 100);
+            $table->string('name', 100);
+            $table->string('surname', 100);
             $table->string('email')->unique();
             $table->string('telephone', 45)->nullable();
             $table->string('rfc', 15)->nullable();;
