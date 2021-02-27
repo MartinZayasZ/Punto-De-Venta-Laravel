@@ -36,4 +36,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Custom
+
+    public function role(){
+        //Relación de uno a uno. solamente se traera un rol
+        return $this->hasOne('App\Role');
+    }
+
+    public function sales(){
+        //Relación de uno a muchos, todas las ventas que hace un vendedor
+        return $this->hasMany('App\Sale', 'user_id');
+    }
+
+    public function purchases(){
+        //Relación de uno a muchos, las compras que hace un cliente
+        return $this->hasMany('App\Sale', 'customer_id');
+    }
+
 }
