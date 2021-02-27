@@ -14,7 +14,7 @@ class ProductController extends Controller
 
     public function list(){
 
-        $products = Product::orderBy('id', 'desc')->paginate(10);
+        $products = Product::orderBy('id', 'desc')->get();
 
         return view('product.index', [
             'products' => $products
