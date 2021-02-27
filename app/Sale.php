@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,11 +14,11 @@ class Sale extends Model
     }
 
     public function seller(){
-        return $this->hasOne('App\User', 'user_id');
+        return $this->belongsTo('App\User', 'user_id');
     }
 
     public function customer(){
-        return $this->hasOne('App\User', 'customer_id');
+        return $this->belongsTo('App\User', 'customer_id');
     }
 
 }

@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use Illuminate\Database\Eloquent\Model;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -39,9 +41,15 @@ class User extends Authenticatable
 
     // Custom
 
-    public function role(){
+    /*public function role(){
         //Relación de uno a uno. solamente se traera un rol
         return $this->hasOne('App\Role');
+    }*/
+
+    //Relación Many To One / de muchos a uno
+    public function role(){
+        //Relación de muchos a uno
+        return $this->belongsTo('App\Role');
     }
 
     public function sales(){
