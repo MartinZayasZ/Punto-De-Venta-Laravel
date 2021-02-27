@@ -19,8 +19,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-
 //Rutas generales
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+
+//Rutas del controlador de productos
+Route::get('/productos', 'ProductController@list')->name('product.list');

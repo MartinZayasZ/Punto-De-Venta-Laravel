@@ -33,7 +33,7 @@
                 <li class="nav-header">PRINCIPALES</li>
 
                 <li class="nav-item">
-                    <a href="pages/calendar.html" class="nav-link">
+                    <a href="{{ route('product.list') }}" class="nav-link">
                         <i class="nav-icon fas fa-boxes"></i>
                         <p>Productos</p>
                     </a>
