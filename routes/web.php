@@ -26,3 +26,4 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 //Rutas del controlador de productos
 Route::get('/productos', 'ProductController@list')->name('product.list');
+Route::get('/productos/eliminar/{id}', 'ProductController@delete')->name('product.delete');

@@ -21,4 +21,20 @@ class ProductController extends Controller
         ]);
     }
 
+    public function delete($id){
+
+        $product = Product::find( $id );
+
+        if( $product ){
+            $product->delete();
+            $message = 'El producto se ha borrado correctamente!!';
+        }else{
+            $message = 'El producto no se ha borrado, intentelo de nuevo más tarde.';
+        }
+
+        return redirect()->route('product.list')->with([
+            'message' => $message
+        ]);
+    }
+
 }
