@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Dealer;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -18,6 +20,40 @@ class ProductController extends Controller
 
         return view('product.index', [
             'products' => $products
+        ]);
+    }
+
+    public function add(){
+
+        $dealers = Dealer::where('active',true)->orderBy('id', 'desc')->get();
+
+        return view('product.add', [
+            'dealers' => $dealers
+        ]);
+    }
+
+
+    public function save(Request $request){
+
+        $this->validate($request, [
+            'name' => ['required', 'max:100'],
+            'description' => ['required', 'max:200'],
+            'price' => ['required'],
+            'stock' => ['required', 'numeric'],
+        ]);
+
+        $product = new Product();
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->price = $request->input('price');
+        $product->stock = $request->input('stock');
+        $product->active = $request->input('active') == 'on';
+        $product->dealer_id = $request->input('dealer_id');
+
+        $product->save();
+
+        return redirect()->route('product.list')->with([
+            'message' => 'El producto ha sido creado exitosamente!!'
         ]);
     }
 

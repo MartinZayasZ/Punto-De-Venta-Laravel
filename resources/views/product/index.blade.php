@@ -19,11 +19,14 @@
     <div class="row">
         <div class="col-12">
 
-            @if(session('message'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('message') }}
+            <div class="row">
+                <div class="col-6">
+                    @include('includes.messages')
                 </div>
-            @endif
+                <div class="col-6 text-right mb-3">
+                    <a href="{{ route('product.add') }}" class="btn btn-info">Agregar producto</a>
+                </div>
+            </div>
 
             <div class="card">
                 <div class="card-body">
