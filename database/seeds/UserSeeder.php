@@ -26,5 +26,17 @@ class UserSeeder extends Seeder
         ]);
         $this->command->info('Se ha insertado el usuario default de admin');
 
+        DB::table('users')->insert([
+            'role_id' => 2,
+            'name' => 'Ventas',
+            'surname' => 'de mostrador',
+            'email' => '',
+            'password' => Hash::make('12345678'),
+            'active' => 1,
+            'created_at' =>  $datetime,
+            'updated_at' =>  $datetime
+        ]);
+        $this->command->info('Se ha insertado el cliente default para las ventas');
+
     }
 }
