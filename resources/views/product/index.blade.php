@@ -50,7 +50,7 @@
                                     <td>{{ $product->dealer->name }}</td>
                                     <td>{{ $product->stock }}</td>
                                     <td class="table-actions">
-                                        <a class="btn btn-app bg-info btn-edit">
+                                        <a href="{{ route('product.edit', ['id' => $product->id]) }}" class="btn btn-app bg-info btn-edit">
                                             <i class="fas fa-edit"></i> Editar
                                         </a>
                                         <a class="btn btn-app bg-danger btn-delete" data-id="{{ $product->id }}">

@@ -24,11 +24,26 @@ class ProductController extends Controller
     }
 
     public function add(){
-
         $dealers = Dealer::where('active',true)->orderBy('id', 'desc')->get();
-
         return view('product.add', [
             'dealers' => $dealers
+        ]);
+    }
+
+    public function edit($id) {
+
+        $dealers = Dealer::where('active',true)->orderBy('id', 'desc')->get();
+        $product = Product::find($id);
+
+        if(!$product){
+            return redirect()->route('product.list')->with([
+                'message' => 'Producto no encontrado'
+            ]);
+        }
+
+        return view('product.edit', [
+            'dealers' => $dealers,
+            'product' => $product
         ]);
     }
 
@@ -54,6 +69,33 @@ class ProductController extends Controller
 
         return redirect()->route('product.list')->with([
             'message' => 'El producto ha sido creado exitosamente!!'
+        ]);
+    }
+
+    public function update(Request $request){
+
+        $this->validate($request, [
+            'name' => ['required', 'max:100'],
+            'description' => ['required', 'max:200'],
+            'price' => ['required'],
+            'stock' => ['required', 'numeric'],
+        ]);
+
+        //Realizamos la busqueda el producto
+        $product = Product::find($request->input('product_id'));
+
+        //actualizamos los valores del producto
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->price = $request->input('price');
+        $product->stock = $request->input('stock');
+        $product->active = $request->input('active') == 'on';
+        $product->dealer_id = $request->input('dealer_id');
+
+        $product->update();
+
+        return redirect()->route('product.edit', ['id'=> $product->id])->with([
+            'message' => 'El producto ha sido actualizado exitosamente!!'
         ]);
     }
 
