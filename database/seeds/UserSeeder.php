@@ -16,10 +16,11 @@ class UserSeeder extends Seeder
 
         DB::table('users')->insert([
             'role_id' => 1,
-            'name' => 'admin',
-            'surname' => 'admin',
+            'username' => 'admin',
+            'name' => 'Admin',
+            'lastname' => '',
             'email' => 'admin@admin.com',
-            'password' => Hash::make('12345678'),
+            'password' => Hash::make('password'),
             'active' => 1,
             'created_at' =>  $datetime,
             'updated_at' =>  $datetime
@@ -28,10 +29,11 @@ class UserSeeder extends Seeder
 
         DB::table('users')->insert([
             'role_id' => 2,
+            'username' => 'vendedor',
             'name' => 'Ventas',
-            'surname' => 'de mostrador',
-            'email' => '',
-            'password' => Hash::make('12345678'),
+            'lastname' => '',
+            'email' => 'vendedor@example.com',
+            'password' => Hash::make('password'),
             'active' => 1,
             'created_at' =>  $datetime,
             'updated_at' =>  $datetime

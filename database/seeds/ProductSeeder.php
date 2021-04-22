@@ -14,26 +14,24 @@ class ProductSeeder extends Seeder
 
         $datetime = new DateTime('now');
 
-        DB::table('dealers')->insert([
+        DB::table('distributors')->insert([
             'name' => 'Miscellaneous',
             'long_name' => "Miscellaneous",
             'description' => '',
             'telephone' => '',
-            'email' => '',
-            'city' => '',
-            'state' => '',
-            'country' => '',
+            'email' => 'example@example.com',
             'active' => 1,
             'created_at' => $datetime,
             'updated_at' => $datetime
         ]);
 
-        for($i = 0; $i < 100; $i++){
+        for($i = 0; $i < 10; $i++){
             DB::table('products')->insert([
-                'dealer_id' => 1,
+                'distributor_id' => 1,
+                'brand' => 'Example brand',
                 'name' => "Producto $i",
                 'description' => 'Este es un producto dinamico de prueba',
-                'price' => 10 + $i,
+                'price' => rand(10,1000),
                 'stock' => 10,
                 'active' => 1,
                 'created_at' =>  $datetime,

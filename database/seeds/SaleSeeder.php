@@ -16,8 +16,9 @@ class SaleSeeder extends Seeder
         for($i = 0; $i < 20; $i++){
             DB::table('sales')->insert([
                 'user_id' => 1,
-                'customer_id' => 2,
+                'customer_id' => 1,
                 'description' => "Venta de prueba número: $i",
+                'subtotal' => 190,
                 'total' => 200,
                 'status' => 'pending',
                 'created_at' =>  $datetime,
