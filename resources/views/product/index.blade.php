@@ -36,7 +36,7 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Precio</th>
-                                <th>Proveedor</th>
+                                <th>Distribuidor</th>
                                 <th>En existencia</th>
                                 <th></th>
                             </tr>
@@ -47,7 +47,7 @@
                                     <td>{{ $product->id }}</td>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->price }}</td>
-                                    <td>{{ $product->dealer->name }}</td>
+                                    <td>{{ $product->distributor->name }}</td>
                                     <td>{{ $product->stock }}</td>
                                     <td class="table-actions">
                                         <a href="{{ route('product.edit', ['id' => $product->id]) }}" class="btn btn-app bg-info btn-edit">
@@ -65,7 +65,7 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Precio</th>
-                                <th>Proveedor</th>
+                                <th>Distribuidor</th>
                                 <th>En existencia</th>
                                 <th></th>
                             </tr>

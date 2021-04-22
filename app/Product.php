@@ -9,8 +9,8 @@ class Product extends Model
 
     protected $table = 'products';
 
-    public function dealer(){
-        return $this->belongsTo('App\Dealer');
+    public function distributor(){
+        return $this->belongsTo('App\Distributor');
     }
 
     public function sales(){

@@ -119,12 +119,12 @@
                         <!-- select -->
                         <div class="form-group">
                             <label>Distribuidor</label>
-                            <select class="form-control @error('dealer_id') is-invalid @enderror" name="dealer_id">
-                                @foreach ($dealers as $dealer)
-                                    <option {{ $product->dealer_id == $dealer->id ? 'selected' : '' }} value="{{ $dealer->id }}">{{ $dealer->name }}</option>
+                            <select class="form-control @error('distributor_id') is-invalid @enderror" name="distributor_id">
+                                @foreach ($distributors as $distributor)
+                                    <option {{ $product->distributor_id == $distributor->id ? 'selected' : '' }} value="{{ $distributor->id }}">{{ $distributor->name }}</option>
                                 @endforeach
                             </select>
-                            @error('dealer_id')
+                            @error('distributor_id')
                                 <span class="text-danger">{{$message}}</span>
                             @enderror
                         </div>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Dealer;
+use App\Distributor;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,15 +24,15 @@ class ProductController extends Controller
     }
 
     public function add(){
-        $dealers = Dealer::where('active',true)->orderBy('id', 'desc')->get();
+        $distributors = Distributor::where('active',true)->orderBy('id', 'desc')->get();
         return view('product.add', [
-            'dealers' => $dealers
+            'distributors' => $distributors
         ]);
     }
 
     public function edit($id) {
 
-        $dealers = Dealer::where('active',true)->orderBy('id', 'desc')->get();
+        $distributors = Distributor::where('active',true)->orderBy('id', 'desc')->get();
         $product = Product::find($id);
 
         if(!$product){
@@ -42,7 +42,7 @@ class ProductController extends Controller
         }
 
         return view('product.edit', [
-            'dealers' => $dealers,
+            'distributors' => $distributors,
             'product' => $product
         ]);
     }
@@ -63,7 +63,7 @@ class ProductController extends Controller
         $product->price = $request->input('price');
         $product->stock = $request->input('stock');
         $product->active = $request->input('active') == 'on';
-        $product->dealer_id = $request->input('dealer_id');
+        $product->distributor_id = $request->input('distributor_id');
 
         $product->save();
 
@@ -90,7 +90,7 @@ class ProductController extends Controller
         $product->price = $request->input('price');
         $product->stock = $request->input('stock');
         $product->active = $request->input('active') == 'on';
-        $product->dealer_id = $request->input('dealer_id');
+        $product->distributor_id = $request->input('distributor_id');
 
         $product->update();
 
