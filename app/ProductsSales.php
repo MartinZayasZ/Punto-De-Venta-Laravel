@@ -10,11 +10,11 @@ class ProductsSales extends Model
     protected $table = 'products_sales';
 
     public function product(){
-        return $this->hasOne('App\Product');
+        return $this->belongsTo('App\Product', 'product_id');
     }
 
     public function sale(){
-        return $this->hasOne('App\Sale');
+        return $this->belongsTo('App\Sale', 'sale_id');
     }
 
 }

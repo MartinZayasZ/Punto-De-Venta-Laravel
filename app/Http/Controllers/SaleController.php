@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 
 //modelos
 use App\Sale;
+use App\User;
+use App\Customer;
 
 class SaleController extends Controller
 {
+    private $status_list = ['pending', 'completed', 'cancelled'];
 
     public function __construct(){
         $this->middleware('auth');
@@ -35,7 +38,10 @@ class SaleController extends Controller
         }
 
         return view('sale.edit', [
-            'sale' => $sale
+            'sale' => $sale,
+            'users' => User::all(),
+            'customers' => Customer::all(),
+            'status_list' => $this->status_list
         ]);
     }
 

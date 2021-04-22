@@ -10,7 +10,7 @@ class Sale extends Model
     protected $table = 'sales';
 
     public function products(){
-        return $this->hasMany('App\ProductSales');
+        return $this->hasMany('App\ProductsSales');
     }
 
     public function seller(){

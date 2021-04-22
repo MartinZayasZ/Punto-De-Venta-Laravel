@@ -44,20 +44,21 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-6">
-                                <!-- text input -->
+                                <!-- textarea -->
                                 <div class="form-group">
-                                    <label>Nota</label>
-                                    <input type="text" name="name" value="{{ $sale->name }}" class="form-control @error('name') is-invalid @enderror"
-                                        placeholder="Introduzca el nombre del producto">
-                                    @error('name')
-                                        <span class="text-danger">{{$message}}</span>
+                                    <label>Descripción</label>
+                                    <textarea class="form-control @error('description') is-invalid @enderror"
+                                        name="description" rows="3"
+                                        placeholder="Introduzca la descripción del producto">{{ $sale->description }}</textarea>
+                                    @error('description')
+                                        <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
 
-                                    <label>Precio</label>
+                                    <label>Total</label>
                                     <div class="input-group">
 
                                         <div class="input-group-prepend">
@@ -65,37 +66,15 @@
                                                 <i class="fas fa-dollar-sign"></i>
                                             </span>
                                         </div>
-                                        <input type="number" step="0.01" name="price" value="{{ $sale->total }}" class="form-control @error('price') is-invalid @enderror"
+                                        <input type="number" step="0.01" name="total" value="{{ $sale->total }}"
+                                            class="form-control @error('total') is-invalid @enderror"
                                             placeholder="Introduzca el precio del producto">
 
                                     </div>
-                                    @error('price')
-                                        <span class="text-danger">{{$message}}</span>
+                                    @error('total')
+                                        <span class="text-danger">{{ $message }}</span>
                                     @enderror
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <!-- textarea -->
-                                <div class="form-group">
-                                    <label>Descripción</label>
-                                    <textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="3"
-                                        placeholder="Introduzca la descripción del producto">{{ $sale->description }}</textarea>
-                                    @error('description')
-                                        <span class="text-danger">{{$message}}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>Stock</label>
-                                    <input type="number" name="stock" value="{{ $sale->stock }}" class="form-control @error('stock') is-invalid @enderror"
-                                        placeholder="Introduzca la cantidad en existencia del producto">
-                                    @error('stock')
-                                        <span class="text-danger">{{$message}}</span>
-                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -109,6 +88,35 @@
                 </div>
                 <!-- /.card -->
                 <!-- /.card -->
+                <!-- productos -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Productos</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body p-0">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Nombre</th>
+                                    <th style="width: 40px">Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($sale->products as $product)
+                                <tr>
+                                    <td>{{$product->product->id}}</td>
+                                    <td>{{$product->product->name}}</td>
+                                    <td><span>$ {{$product->product->price}}</span></td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card products -->
             </div>
             <!--/.col (left) -->
             <!-- right column -->
@@ -122,20 +130,38 @@
                         <!-- select -->
                         <div class="form-group">
                             <label>Vendedor</label>
-                            <select class="form-control @error('dealer_id') is-invalid @enderror" name="dealer_id">
-                                @foreach ($dealers as $dealer)
-                                    <option {{ $product->dealer_id == $dealer->id ? 'selected' : '' }} value="{{ $dealer->id }}">{{ $dealer->name }}</option>
+                            <select class="form-control @error('user_id') is-invalid @enderror" name="user_id">
+                                @foreach ($users as $user)
+                                    <option {{ $sale->user_id == $user->id ? 'selected' : '' }}
+                                        value="{{ $user->id }}">{{ $user->name }}</option>
                                 @endforeach
                             </select>
-                            @error('dealer_id')
-                                <span class="text-danger">{{$message}}</span>
+                            @error('user_id')
+                                <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Activo</label>
-                            <input class="form-control @error('active') is-invalid @enderror" type="checkbox" name="active" {{ $sale->active ? 'checked' : '' }}>
-                            @error('active')
-                                <span class="text-danger">{{$message}}</span>
+                            <label>Cliente</label>
+                            <select class="form-control @error('user_id') is-invalid @enderror" name="customer_id">
+                                @foreach ($customers as $customer)
+                                    <option {{ $sale->customer_id == $customer->id ? 'selected' : '' }}
+                                        value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('customer_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Estatus</label>
+                            <select class="form-control @error('user_id') is-invalid @enderror" name="status">
+                                @foreach ($status_list as $status)
+                                    <option {{ $sale->status == $status ? 'selected' : '' }}
+                                        value="{{ $status }}">{{ $status }}</option>
+                                @endforeach
+                            </select>
+                            @error('status')
+                                <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -144,6 +170,7 @@
                 <!-- /.card -->
             </div>
             <!--/.col (right) -->
+
         </div>
     </form>
 
