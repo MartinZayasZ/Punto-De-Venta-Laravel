@@ -36,3 +36,5 @@ Route::get('/productos/eliminar/{id}', 'ProductController@delete')->name('produc
 
 //Rutas del controlador de ventas
 Route::get('/ventas', 'SaleController@list')->name('sale.list');
+Route::get('/venta/{id}', 'SaleController@edit')->name('sale.edit');
+Route::post('/venta/{id}', 'SaleController@update')->name('sale.update');

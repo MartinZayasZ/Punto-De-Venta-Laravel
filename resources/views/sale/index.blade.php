@@ -50,7 +50,7 @@
                                     <td align="center">${{ $sale->total }}</td>
                                     <td>{{ $sale->updated_at }}</td>
                                     <td class="table-actions">
-                                        <a href="{{ route('product.edit', ['id' => $sale->id]) }}" class="btn btn-app bg-info btn-edit">
+                                        <a href="{{ route('sale.edit', ['id' => $sale->id]) }}" class="btn btn-app bg-info btn-edit">
                                             <i class="fas fa-edit"></i> Editar
                                         </a>
                                         <a class="btn btn-app bg-danger btn-delete" data-id="{{ $sale->id }}">
