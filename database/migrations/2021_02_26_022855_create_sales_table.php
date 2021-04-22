@@ -18,6 +18,7 @@ class CreateSalesTable extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('customer_id')->constrained('users');
             $table->string('description', 100);
+            $table->double('subtotal');
             $table->double('total');
             $table->enum('status', ['pending', 'completed', 'cancelled']);
             $table->timestamps();
